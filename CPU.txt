@@ -1,0 +1,13 @@
+#查看CPU資訊(多)
+cat /proc/cpuinfo 
+
+#查看CPU資訊(少)
+lscpu
+
+#查看CPU頻率(秒更新)
+watch -n 1 "cat /proc/cpuinfo | grep MHz"
+
+#查看CPU溫度(秒更新)
+sudo apt-get install lm-sensors
+yes | sudo sensors-detect
+watch -n 1 sensors
