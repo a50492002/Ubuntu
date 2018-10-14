@@ -1,4 +1,4 @@
-wget https://repo.anaconda.com/archive/Anaconda2-5.2.0-Linux-x86_64.sh
+wget https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
 bash Anaconda2-5.2.0-Linux-x86_64.sh -b
 sudo nano  ~./bashrc
 
