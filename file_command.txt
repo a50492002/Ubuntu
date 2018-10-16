@@ -1,0 +1,3 @@
+chown <user>:<group> examples
+
+chmod nnn examples
