@@ -3,12 +3,12 @@ sudo apt-get install vsftpd
 sudo nano /etc/vsftpd.conf
 #########################################################################################
 #  修改以下參數:                                                                         #
-#      # Allow anonymous FTP? (Disabled by default).                                    #                  
+#     # Allow anonymous FTP? (Disabled by default).                                     #                  
 #     anonymous_enable=NO                                                               #
 #     #                                                                                 #
 #     # Uncomment this to allow local users to log in.                                  #
-#     local_enable=YES                                                                  #
-#       .....                                                                           #
+#     local_enable=YES                                                                  #cd 
+#     #                                                                                 #
 #     # Uncomment this to enable any form of FTP write command.                         #
 #     write_enable=YES                                                                  #
 #       .....                                                                           #
@@ -21,3 +21,7 @@ sudo nano /etc/vsftpd.conf
 #########################################################################################
 
 sudo systemctl restart vsftpd
+
+sudo mkdir /mnt/web
+
+sudo ln -s /mnt/web/ /var/www/html/
