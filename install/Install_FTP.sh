@@ -1,5 +1,14 @@
+# 安裝FTP
 sudo apt-get install vsftpd
 
+
+# 創建FTP目錄(web用)
+sudo mkdir /mnt/web
+
+# 連結FTP目錄到web目錄
+sudo ln -s /mnt/web/ /var/www/html/
+
+# 編輯設定檔
 sudo nano /etc/vsftpd.conf
 #########################################################################################
 #  修改以下參數:                                                                         #
@@ -7,21 +16,13 @@ sudo nano /etc/vsftpd.conf
 #     anonymous_enable=NO                                                               #
 #     #                                                                                 #
 #     # Uncomment this to allow local users to log in.                                  #
-#     local_enable=YES                                                                  #cd 
+#     local_enable=YES                                                                  #
 #     #                                                                                 #
 #     # Uncomment this to enable any form of FTP write command.                         #
 #     write_enable=YES                                                                  #
-#       .....                                                                           #
-#     # You may restrict local users to their home directories.  See the FAQ for        #
-#     # the possible risks in this before using chroot_local_user or                    #
-#     # chroot_list_enable below.                                                       #
-#     chroot_local_user=YES                                                             #
-#     user_sub_token=$USER                                                              #
-#     local_root=/home/$USER/ftp                                                        #
+#     local_root=/mnt/web                                                               #
+#     .....                                                                             #
 #########################################################################################
 
+# 重啟FTP
 sudo systemctl restart vsftpd
-
-sudo mkdir /mnt/web
-
-sudo ln -s /mnt/web/ /var/www/html/
