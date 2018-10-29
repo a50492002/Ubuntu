@@ -9,3 +9,8 @@ pip install keras
 
 # 安裝 h5py
 pip install h5py==2.8.0rc1
+
+
+
+sudo apt-get install python-dev
+pip install mysqlclient
