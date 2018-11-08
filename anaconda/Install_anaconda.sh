@@ -2,7 +2,7 @@
 wget https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
 
 # 安裝 Anaconda3 5.2.0
-bash Anaconda3-5.2.0-Linux-x86_64.sh
+bash -p Anaconda3-5.2.0-Linux-x86_64.sh
 
 # 修改環境變數
 sudo nano  ~/.bashrc
