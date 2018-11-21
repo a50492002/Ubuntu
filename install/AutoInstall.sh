@@ -3,7 +3,9 @@ sudo apt-get upgrade -y
 
 #安裝 SSH server
 sudo apt-get install ssh -y
-
+sudo sed -i 's/Port 22/Port 58888/g' /etc/ssh/sshd_config
+sudo sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin no/g' /etc/ssh/sshd_config
+sudo systemctl restart ssh
 
 #安裝 LAMP
 sudo apt-get install software-properties-common -y
@@ -19,6 +21,8 @@ sudo apt-get install phpmyadmin php-mbstring php-gettext -y
 
 #安裝FTP
 sudo apt-get install vsftpd -y
+
+
 
 #安裝 Anaconda
 wget https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
