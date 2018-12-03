@@ -25,12 +25,12 @@ sudo apt-get install vsftpd -y
 
 
 #安裝 Anaconda
-wget https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
-bash Anaconda3-5.2.0-Linux-x86_64.sh
-pip install --upgrade pip
-pip install msgpack
-pip install tensorflow
-pip install keras
-pip install h5py==2.8.0rc1
-jupyter notebook --generate-config
-jupyter notebook password
+#wget https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
+#bash Anaconda3-5.2.0-Linux-x86_64.sh
+#pip install --upgrade pip
+#pip install msgpack
+#pip install tensorflow
+#pip install keras
+#pip install h5py==2.8.0rc1
+#jupyter notebook --generate-config
+#jupyter notebook password
