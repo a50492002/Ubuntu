@@ -4,7 +4,7 @@ sudo apt-get upgrade -y
 #安裝 SSH server
 sudo apt-get install -y ssh
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
-sudo sed -i 's/#Port 22/Port 8797/g' /etc/ssh/sshd_config
+sudo sed -i 's/#Port 22/Port 58888/g' /etc/ssh/sshd_config
 sudo sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin no/g' /etc/ssh/sshd_config
 sudo systemctl restart ssh
 # sudo ufw allow 8797
@@ -34,7 +34,7 @@ sudo systemctl restart vsftpd
 #防火牆UFW
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
-sudo ufw allow 8797
+sudo ufw allow 58888
 sudo ufw allow http
 sudo ufw allow https
 sudo ufw allow ftp
