@@ -1,0 +1,4 @@
+cd /var
+sudo mkdir ftp
+sudo chmod 777 ftp
+local_root=/var/ftp/
