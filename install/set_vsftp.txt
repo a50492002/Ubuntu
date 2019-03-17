@@ -1,4 +1,5 @@
 cd /var
 sudo mkdir ftp
 sudo chmod 777 ftp
-local_root=/var/ftp/
+local_root=/var/ftp
+user_config_dir=/etc/vsftpd/userconfig
