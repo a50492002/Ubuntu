@@ -1,0 +1,78 @@
+#from https://linuxize.com/post/how-to-install-minecraft-server-on-ubuntu-18-04/
+
+
+sudo apt update
+sudo apt install git build-essential
+
+sudo apt update
+sudo apt install openjdk-8-jre-headless
+
+sudo useradd -r -m -U -d /opt/minecraft -s /bin/bash minecraft
+
+sudo su - minecraft
+mkdir -p ~/{backups,tools,server}
+
+cd ~/tools && git clone https://github.com/Tiiffi/mcrcon.git
+cd ~/tools/mcrcon
+gcc -std=gnu11 -pedantic -Wall -Wextra -O2 -s -o mcrcon mcrcon.c
+
+wget https://launcher.mojang.com/v1/objects/3737db93722a9e39eeada7c27e7aca28b144ffa7/server.jar -P ~/server
+java -Xmx1024M -Xms512M -d64 -jar ~/server/server.jar nogui
+
+sed -i 's/eula=false/eula=true/g' ~/server/eula.txt
+sed -i '$a rcon.port=23888' ~/server/server.properties
+sed -i '$a rcon.password=strong-password' ~/server/server.properties
+sed -i '$a enable-rcon=true' ~/server/server.properties
+
+exit
+sudo nano /etc/systemd/system/minecraft.service
+**********************************************************************************************************************************
+[Unit]
+Description=Minecraft Server
+After=network.target
+
+[Service]
+User=minecraft
+Nice=1
+illMode=none
+SuccessExitStatus=0 1
+ProtectHome=true
+*ProtectSystem=full
+PrivateDevices=true
+NoNewPrivileges=true
+WorkingDirectory=/opt/minecraft/server
+ExecStart=/usr/bin/java -Xmx1024M -Xms512M -jar server.jar nogui --noconsole
+ExecStop=/opt/minecraft/tools/mcrcon/mcrcon -H 127.0.0.1 -P 23888 -p strong-password stop
+
+[Install]
+WantedBy=multi-user.target
+**********************************************************************************************************************************sudo systemctl daemon-reload
+sudo systemctl start minecraft
+sudo systemctl enable minecraft
+
+sudo su - minecraft
+nano /opt/minecraft/tools/backup.sh
+**********************************************************************************************************************************
+#!/bin/bash
+
+function rcon {
+  /opt/minecraft/tools/mcrcon/mcrcon -H 127.0.0.1 -P 23888 -p strong-password "$1"
+}
+
+rcon "save-off"
+rcon "save-all"
+tar -cvpzf /opt/minecraft/backups/server-$(date +%F_%R).tar.gz /opt/minecraft/server
+rcon "save-on"
+
+## Delete older backups
+find /opt/minecraft/backups/ -type f -mtime +7 -name '*.gz' -delete
+**********************************************************************************************************************************
+chmod +x /opt/minecraft/tools/backup.sh
+
+crontab -e
+**********************************************************************************************************************************
+0 3 * * * /opt/minecraft/tools/backup.sh
+**********************************************************************************************************************************
+
+/opt/minecraft/tools/mcrcon/mcrcon -H 127.0.0.1 -P 23888 -p strong-password -t
+
