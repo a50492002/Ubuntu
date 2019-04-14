@@ -1,0 +1,2 @@
+sudo adduser test
+sudo usermod -a -G <group1>, <group2> test
