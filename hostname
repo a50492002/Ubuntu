@@ -1,0 +1,2 @@
+#更改主機名稱
+sudo hostnamectl set-hostname <new-hostname>
