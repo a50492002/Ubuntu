@@ -1,5 +1,6 @@
 # 硬碟測速
 hdparm -t /dev/sda
+hdparm -t --direct /dev/sda
 
 # 檢查硬碟使用量
 df -h
