@@ -56,7 +56,7 @@ sudo nano /etc/smartd.conf
 ```
 DEVICESCAN -d removable -n standby -m root -M exec /usr/share/smartmontools/smartd-runner
 ```
-#### 參數說明:
+參數說明:
 * -d 設備類型
   * ata - 設備類型為ATA
   * scsi - 設備類型為SCSI
@@ -74,9 +74,17 @@ DEVICESCAN -d removable -n standby -m root -M exec /usr/share/smartmontools/smar
   * test - 智能啟動後立即發送一封測試電子郵件
   * exec PATH - 運行可執行的PATH而不是默認的mail命令
 
+#### smartd 排程設定
+```
+	# 每日 02:00 快速檢查 sda，每週六 03:00 完整檢查 sda。
+	/dev/sda -a -o on -S on -s (S/../.././02|L/../../6/03)
+```
+儲存並離開
 
-# 監控 SMART 狀態
-/dev/sda -H -l error -l selftest -t -I 194
+### 重啟 smartd 服務
+```
+sudo service smartmontools start
+```
 
 
 
