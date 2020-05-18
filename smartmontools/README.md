@@ -56,7 +56,7 @@ sudo nano /etc/smartd.conf
 ```
 DEVICESCAN -d removable -n standby -m root -M exec /usr/share/smartmontools/smartd-runner
 ```
-####參數說明:
+#### 參數說明:
 * -d 設備類型
   * ata - 設備類型為ATA
   * scsi - 設備類型為SCSI
